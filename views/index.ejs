@@ -1,0 +1,23 @@
+
+<%- include("header"); -%>
+<!-- ______________body______________ -->
+<body>
+<div class="box" id="heading">
+    <h1><%= HEADING %></h1>
+</div>
+
+<div class="box">
+  <% for(var i=0;i<NEWiTEMS.length;i++){ %>
+    <div class="item">
+      <input type="checkbox">
+      <p><%= NEWiTEMS[i] %></p>
+    </div>
+  <% } %>
+
+    <form class="item" action="/" method="post">
+      <input type="text" name="NEWiTEMS" maxlength="30" placeholder="New Item" required autofocus autocomplete="off" >
+      <button type="submit" name=button value=<%= buttonValue %>>+</button>
+    </form>
+</div>
+
+<%-include('footer')-%>
