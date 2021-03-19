@@ -9,8 +9,8 @@ app.use(express.static(__dirname+"/public"));
 
 app.set("view engine","ejs");
 
-var items = [];
-var works = [];
+const items = [];
+const works = [];
 
 app.listen(3000,function(){
 
@@ -19,10 +19,10 @@ app.listen(3000,function(){
 
 app.get("/",function(req,res){
 
-  res.render("index",{HEADING:date.day(),NEWiTEMS:items,buttonValue:"default"});
+  res.render("index",{HEADING:date.date(),NEWiTEMS:items,buttonValue:"default"});
 })
 app.post("/",function(request,responce){
-  var newItem = request.body.NEWiTEMS;
+  const newItem = request.body.NEWiTEMS;
   console.log(request.body.button);
   if(request.body.button=="workButton"){
   works.push(newItem);

@@ -1,15 +1,11 @@
-exports.date = getDate;
-function getDate(){
-  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  var date = new Date();
-  var dateString = date.toLocaleString("en-US",options)
-  console.log(date);
-  return dateString;
+exports.date = function(){
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const date = new Date();
+  return date.toLocaleString("en-US",options);
 }
-exports.day = getDay;
-function getDay(){
-  var options = { weekday: 'long'};
-  var date = new Date();
-  let day = date.getDay().toLocaleString("en-US,options");
-  return day;
+
+exports.day = function (){
+  const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const date = new Date();
+  return days[date.getDay()];
 }
