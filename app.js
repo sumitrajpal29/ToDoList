@@ -21,31 +21,33 @@ const fruits = new Item({name:"Apple"});
 
 const itemsArray=[vegetables,fruits];
 
-Item.insertMany(itemsArray,function(err){
-  if(err)console.log(err);
-  else console.log("Successfully saved items to DB.");
+Item.find({},function(err,list){
+if (list.length===0) {
+  Item.insertMany(itemsArray,function(err){
+    if(err)console.log(err);
+    else console.log("Successfully saved items to DB.");
+  })
+}
 });
 
-// app.listen(3000,function(){
-//
-//   console.log("App is running on port 3000");
-// })
+  app.get("/",function(req,res){
+    Item.find({},function(err,results){
+      if(err)console.log(err);
+    res.render("index",{HEADING:"Today",NEWiTEMS:results,buttonValue:"default"});
+  })
+});
 
-app.get("/",function(req,res){
+app.listen(3000,function(){
+  console.log("App is running at port 3000")
+});
 
-  res.render("index",{HEADING:"Today",NEWiTEMS:items,buttonValue:"default"});
-})
 app.post("/",function(request,responce){
-  const newItem = request.body.NEWiTEMS;
+  const nextItem = request.body.NEWiTEMS;
   console.log(request.body.button);
-  if(request.body.button=="workButton"){
-  works.push(newItem);
-  responce.redirect("/work");
-  }
-  else{
-  items.push(newItem);
-  responce.redirect("/");
-  }
+    const newItem = new Item({name:nextItem});
+    newItem.save();
+    console.log(nextItem);
+    responce.redirect("/");
 })
 
 app.get("/work",function(req,res){
