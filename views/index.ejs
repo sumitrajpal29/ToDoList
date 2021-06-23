@@ -1,4 +1,3 @@
-
 <%- include("header"); -%>
 <!-- ______________body______________ -->
 <body>
@@ -9,7 +8,9 @@
 <div class="box">
   <% NEWiTEMS.forEach((item) => { %>
     <div class="item">
-      <input type="checkbox">
+      <form action="/delete" method="post">
+        <input type="checkbox" name="CheckBox" value=<%=item._id%> onchange= "this.form.submit()">
+      </form>
       <p><%= item.name %></p>
     </div>
   <% }); %>

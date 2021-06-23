@@ -50,6 +50,16 @@ app.post("/",function(request,responce){
     responce.redirect("/");
 })
 
+app.post("/delete",function(req,res){
+  checkedItemId = req.body.CheckBox;
+  Item.findByIdAndRemove(checkedItemId,function(err,success){
+    if(err)console.log(err);
+    else console.log(checkedItemId+" deleted successfully");
+    res.redirect("/");
+  })
+
+})
+
 app.get("/work",function(req,res){
   res.render("index",{HEADING:"Work List",NEWiTEMS:works,buttonValue:"workButton"});
 })
