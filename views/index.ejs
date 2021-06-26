@@ -10,6 +10,7 @@
     <div class="item">
       <form action="/delete" method="post">
         <input type="checkbox" name="CheckBox" value=<%=item._id%> onchange= "this.form.submit()">
+        <input type="hidden" name="listName" value="<%=HEADING%>">
       </form>
       <p><%= item.name %></p>
     </div>
@@ -17,7 +18,7 @@
 
     <form class="item" action="/" method="post">
       <input type="text" name="NEWiTEMS" maxlength="30" placeholder="New Item" required autofocus autocomplete="off" >
-      <button type="submit" name=button value=<%= buttonValue %>>+</button>
+      <button type="submit" name=button value=<%= HEADING %>>+</button>
     </form>
 </div>
 
