@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const _ = require("lodash");
 const app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -50,7 +51,7 @@ app.get("/",function(req,res){
 });
 
 app.get("/:parameter",function(req,res){
-  const parameter = req.params.parameter;
+  const parameter = _.capitalize(req.params.parameter);
   console.log("Parameter:"+parameter);
   List.findOne({name:parameter},function(err,list){ //cannot use List.find() here because it returns array of found elements.
     if(!err){
